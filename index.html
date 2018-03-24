@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>文字无缝滚动</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		#box {
+			width: 300px;
+			height: 300px;
+			background: pink;
+			margin: 10px auto;
+			overflow-y: hidden; /*超出设置纵向滚动条*/
+		}
+		#one {
+			/*background: orange;*/
+			overflow: hidden;/*解决子元素设置margin-top，父元素无法包含的问题*/
+			border-top: 20px solid red;
+			border-bottom: 20px solid red;
+		}
+		#two {
+			border-top: 20px solid red;
+			border-bottom: 20px solid red;
+		}
+		li {
+			margin-top: 10px;
+			margin-left: 40px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ol id="one">
+			<li>kskdksfjdjfk</li>
+			<li>圣诞节说的就是</li>
+			<li>圣的疯狂的考拉大概</li>
+			<li>啦啦啦啦啦</li>
+			<li>哈哈哈乐力酸辣粉</li>
+			<li>了的看过了付款了公开发了</li>
+			<li>888888888888</li>
+			<li>ppppppppppppsdsjkfjdf</li>
+			<li>哦是老大斯洛伐克</li>
+			<li>sa;sllf(((*❤+ksdfk**^%$</li>
+			<li>sa;s的快递费就看浪费的</li>
+			<li>是开放的老师来了了</li>
+			<li>来说劳动力数量</li>
+			<li>啊受到了考生的放大来看</li>
+			<li>123456789</li>
+		</ol>
+		<ol id="two">
+		</ol>
+	</div>
+</body>
+<script type="text/javascript">
+	// 获取元素
+	var oBox = document.getElementById('box'),
+		one = document.getElementById('one'),
+		two = document.getElementById('two');
+
+	// 将第一部分的内容，赋值给two
+	two.innerHTML = one.innerHTML;
+
+	// 启动定时器
+	var timer = setInterval(fn, 10);
+	function fn() {
+		oBox.scrollTop++;
+		// console.log(oBox.scrollTop) //最大值为165（本demo中，one内容的高度为465px，元素为300px，所以：元素.scrollTop的最大值为165）
+
+		/*if (oBox.scrollTop == parseInt(window.getComputedStyle(one).height)) {
+			oBox.scrollTop = 0;
+		}*/
+
+		if (oBox.scrollTop == one.offsetHeight) {
+			oBox.scrollTop = 0;
+		}
+	}
+
+	// 给box绑定【鼠标移入】【鼠标移出】事件
+	oBox.onmouseover = function() {
+		clearInterval(timer);
+	}
+	oBox.onmouseout = function() {
+		timer = setInterval(fn, 10);
+	}
+
+
+
+
+
+	
+
+	// 元素.offsetHeight 元素的实际高度（包含：边框+内边距）  【不包含 外边距】
+	// 元素.offsetWidth  元素的实际宽度（包含：边框+内边距）  【不包含 外边距】
+	// 【通过样式】获取的元素高度和宽度（不不不包含：边框+内边距）【不包含  外边距】
+
+
+</script>
+</html>
